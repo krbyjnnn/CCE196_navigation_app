@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'demo_auth.dart';
+import 'login_screen.dart';
  
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -8,6 +10,19 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Profile'),
+        actions: [
+          IconButton(
+            tooltip: 'Logout',
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              DemoAuth.logout();
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (route) => false,
+              );
+            },
+          ),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(24),
